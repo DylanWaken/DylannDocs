@@ -16,3 +16,19 @@ libraries else than CUDA stl, OpenCV (and audio libraries in the future).
 
 ![menu-title](https://github.com/DylanWaken/DylannDocs/blob/master/assets/MenuItems.png)
 
+- [Basic Ideas](#basic-ideas)
+- [Installation](#installation)
+- [Usage & Programming](#usage)
+- [Special Features](#special-features)
+- [Future Plans](#future-plans)
+- [Contributing](#contributing)
+- [License](#license)
+
+## <a name="basic-ideas"> </a> Basic Ideas
+
+I have attempted such frameworks in multiple ways, including multiple OOP
+and POP implementations, as most of the ancestors of Dylann were abandoned due to the lack of
+flexibility and architecture issues (making complex models extremely hard to code). I might be
+writing a post about these learnings in the future (some blog text). For now, let's focus on how
+Dylann works. 
+
