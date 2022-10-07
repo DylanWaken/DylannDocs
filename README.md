@@ -118,7 +118,39 @@ map<TENSOR_PTR, cuTensorBase*> tensors;
 cuTensorBase* tensor = tensors[uuid];
 ```
 
+Instructions in the framework works like the turing machine. The framework would automatically transform the user-defined
+model architecture into a series of fundamental tensor operations, each includes operation type, locations of input parameters and
+locations of output results. When running the model, these instructions are executed line by line, performing everything
+in the sequence.
+
 ![instructions](https://github.com/DylanWaken/DylannDocs/blob/master/assets/Instructions.png)
 
+Each instruction is shape like following (Take 'ADD' as an example):
+```cpp
+    struct ADD : public Operation {
+    public:
+        //X refers to input parameters
+        //they will not be change by the operation
+        TENSOR_PTR X1;
+        TENSOR_PTR X2;
+        //Y refers to output results
+        TENSOR_PTR Y;
+        
+        //other instruction parameters
+        float alpha;
+        float beta;
+        
+        //initialize
+        ADD(TENSOR_PTR X1, TENSOR_PTR X2, TENSOR_PTR Y, float alpha, float beta) {}
+                
+        //execution ( Y = alpha * X1 + beta * X2 )
+        void run() override;
+        
+        //serializing or logging utility functions
+        void encodeParams(unsigned char * file, size_t &offset) override;
+        size_t getEncodedSize() override;
+        void print() override;
+    };
+```
 
 
