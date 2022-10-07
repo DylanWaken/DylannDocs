@@ -62,15 +62,20 @@ RELU            0x1b  0x1c
 
 The bare form looks scary, so lets view them in graphs.
 
+`cuTensorBase` is the representation of tensors. it includes a header sections and data section, as shown by following:
+
+
+
 ![tensor-sequence](https://github.com/DylanWaken/DylannDocs/blob/master/assets/TensorSeq.png)
 
 The engine maintains a registered array of all tensors currently in the system (like memory in normal programming). For 
 safety concerns and easier management, the array is in the shape of maps, where the key is the tensor's `uuid` or its
-serial number (of uint64_t type), and the values are pointers to tensor objects. 
+serial number (of uint64_t type), and the values are pointers to tensor objects. All tensor definition in the framework 
+will be adding a new slot to the map.
 ```cpp
 map<uint64_t, cuTensorBase*> tensors;
         |           |
         V           V
       uuid       pointer
 ```
-All tensor definition in the framework will be adding a new slot to the map.
+
