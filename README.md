@@ -62,5 +62,5 @@ RELU            0x1b  0x1c
 
 The bare form looks scary, so lets view them in graphs.
 
-![tensor-sequence]()
+![tensor-sequence](https://github.com/DylanWaken/DylannDocs/blob/master/assets/TensorSeq.png)
 
