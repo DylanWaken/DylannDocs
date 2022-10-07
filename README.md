@@ -106,9 +106,14 @@ safety concerns and easier management, the array is in the shape of maps, where 
 serial number (of uint64_t type), and the values are pointers to tensor objects. All tensor definition in the framework 
 will be adding a new slot to the map.
 ```cpp
-map<uint64_t, cuTensorBase*> tensors;
+//tensor map
+typedef uint64_t TENSOR_PTR;
+map<TENSOR_PTR, cuTensorBase*> tensors;
         |           |
         V           V
       uuid       pointer
+      
+//get tensor from map:
+cuTensorBase* tensor = tensors[uuid];
 ```
 
