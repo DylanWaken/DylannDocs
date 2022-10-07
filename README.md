@@ -101,7 +101,8 @@ data and another for gradients.
 
 ![tensor-sequence](https://github.com/DylanWaken/DylannDocs/blob/master/assets/TensorSeq.png)
 
-The engine maintains a registered array of all tensors currently in the system (like memory in normal programming). For 
+To achieve the assembly like structure, the engine maintains a registered array of all tensors currently in the system
+(like memory in normal programming). For 
 safety concerns and easier management, the array is in the shape of maps, where the key is the tensor's `uuid` or its
 serial number (of uint64_t type), and the values are pointers to tensor objects. All tensor definition in the framework 
 will be adding a new slot to the map.
@@ -116,4 +117,6 @@ map<TENSOR_PTR, cuTensorBase*> tensors;
 //get tensor from map:
 cuTensorBase* tensor = tensors[uuid];
 ```
+
+
 
