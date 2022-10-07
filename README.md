@@ -34,3 +34,33 @@ flexibility and architecture issues (making complex models extremely hard to cod
 writing a post about these learnings in the future (some blog text). For now, let's focus on how
 Dylann works. 
 
+The earliest inspiration came from assembly language:
+```asm
+; An assembly language example for adding and multiplying two numbers
+    mov eax, 5
+    mov ebx, 3
+    mov ecx, 0
+    add eax, ebx
+    mov ecx, 1
+    mul ebx
+```
+
+Assembly is fundamentally a sequence of operations, including store, load, copy, move and arithmetics. All
+data are stored in an array of registers, where operations are performed. Since neural networks are
+technically also sequences of matrix operations, I thought of something:
+
+```cpp
+//Instructions for a resnet block (hex stands for tensors)
+CONV2D          0xa   0xb   0x9   0xc 1 1 1 1 1 1
+BATCHNORM2D     0xc   0x11  0xf   0x10  0xd  0xe 1e-08 1
+RELU            0x11  0x12
+CONV2D          0x13  0x14  0x12  0x15 1 1 1 1 1 1
+BATCHNORM2D     0x15  0x1a  0x18  0x19  0x16 0x17 1e-08 1
+ADD             0x1a  0x9   0x1b  1 1
+RELU            0x1b  0x1c
+```
+
+The bare form looks scary, so I will use some graphs to explain them.
+
+
+
