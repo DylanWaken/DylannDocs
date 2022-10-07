@@ -152,5 +152,9 @@ Each instruction is shape like following (Take 'ADD' as an example):
         void print() override;
     };
 ```
-
+And in execution, it would shape like:
+```cpp
+ADD &X1 &X2 &Y alpha beta
+```
+Where `&` is the TENSOR_PTR for the tensor in the map.
 
