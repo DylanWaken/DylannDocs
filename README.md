@@ -64,6 +64,8 @@ The bare form looks scary, so lets view them in graphs.
 
 `cuTensorBase` is the representation of tensors. it includes a header sections and data section, as shown by following:
 
+![tensor](https://github.com/DylanWaken/DylannDocs/blob/master/assets/tENSOR.png)
+
 
 
 ![tensor-sequence](https://github.com/DylanWaken/DylannDocs/blob/master/assets/TensorSeq.png)
