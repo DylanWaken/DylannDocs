@@ -60,7 +60,7 @@ ADD             0x1a  0x9   0x1b  1 1
 RELU            0x1b  0x1c
 ```
 
-The bare form looks scary, so I will use some graphs to explain them.
+The bare form looks scary, so lets view them in graphs.
 
-
+![tensor-sequence]()
 
