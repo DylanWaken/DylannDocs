@@ -118,5 +118,7 @@ map<TENSOR_PTR, cuTensorBase*> tensors;
 cuTensorBase* tensor = tensors[uuid];
 ```
 
+![instructions](https://github.com/DylanWaken/DylannDocs/blob/master/assets/Instructions.png)
+
 
 
