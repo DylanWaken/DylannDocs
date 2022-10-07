@@ -66,6 +66,37 @@ The bare form looks scary, so lets view them in graphs.
 
 ![tensor](https://github.com/DylanWaken/DylannDocs/blob/master/assets/tENSOR.png)
 
+Each tensor object header would include the following information:
+```cpp
+struct TDescriptor{
+        cudnnTensorDescriptor_t cudnnDesc{};   //cudnn descriptor for using the library
+        
+        cudnnDataType_t dType;     //tensor data type
+        shape4 sizes;              //tensor shape, only supporting 4 dimension for now
+        uint64_t numel;            //number of elements
+        uint64_t elementSize;      //size of each element
+        
+        uint64_t uuid;             //unique id for the tensor
+        
+        //state
+        bool isAllocated = false;  //whether the tensor data is allocated on device memory
+        bool withGrad = false;     //whether the tensor has a gradient allocated
+        bool isParam = false;      //whether the tensor is a parameter (going to be saved and optimized)
+        bool isWeight = false;     //whether the tensor is a weight (been multiplies, use for L2 regularization)
+
+        PARAM_INIT_TYPE paramInitType;  //defines how to initialize the tensor with random values
+};
+```
+Each tensor data storgae includes the following information:
+```cpp
+struct TStorage{
+        void* data;                //pointer to the data
+        int deviceID;              //the CUDA device the tensor is on
+        uint64_t memSize;          //size of data in device memory (bytes)
+};
+```
+Each `cuTensorBase` object would include a `TDescriptor` and pointers to two `TStorage` objects. with one storage for
+data and another for gradients.
 
 
 ![tensor-sequence](https://github.com/DylanWaken/DylannDocs/blob/master/assets/TensorSeq.png)
