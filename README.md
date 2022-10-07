@@ -158,3 +158,33 @@ ADD &X1 &X2 &Y alpha beta
 ```
 Where `&` is the TENSOR_PTR for the tensor in the map.
 
+In the model definition stage, I created a series of `shell functions` for each operation. they are more like advanced
+languages that are more human readable and intuitive. Most of shell functions would also automatically set up parameters
+necessary for execution, left out only the ones that are specified to be given by the user.
+
+```cpp
+   Y = X1 + softmax(relu(X2 + 3 * X3), step);
+```
+
+would be compiled as
+
+```c++
+   SCALE &X3 &X3out 3
+   ADD &X2 &X3out &X2out 1 1
+   RELU &X2out &X2out2
+   SOFTMAX &X2out2 &X2out3 step
+   ADD &X1 &X2out3 &Y 1 1
+```
+
+and optimized as
+
+```c++
+   ADD &X2 &X3 &X2out 1 3
+   RELU &X2out &X2out2
+   SOFTMAX &X2out2 &X2out3 step
+   ADD &X1 &X2out3 &Y 1 1
+```
+
+//since we do not overwrite original input tensors to prevent autograd issues, we would create new tensors in the process
+of constructing the sequence of instructions. (such as X2out, X2out2, X2out3)
+
